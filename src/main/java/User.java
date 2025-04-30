@@ -24,14 +24,10 @@ public class User {
         }
 
     }
-    public void setId(int Id){
-        this.Id = Id;
-    }
 
     public boolean equals(User user){
         return this.name.equals(user.name) && this.Id == user.Id;
     }
-
 
 
     public String toString(){
