@@ -1,4 +1,4 @@
-package models;
+package com.example.models;
 
 public class Output {
     public void generateReport(Income income, Savings savings, Investment investment, Expenditure expenditure) {
