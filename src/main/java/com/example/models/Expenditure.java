@@ -9,17 +9,39 @@ public class Expenditure {
 
     public void addExpenses() {
         Scanner scanner = new Scanner(System.in);
-        char choice = '\0';
+        String choice;
+        String source;
+        Double value;
+
         do {
-            System.out.println("You want to add any expenditure thing (Y/N)? Press 'N' to stop!");
-            choice = scanner.next().toUpperCase().charAt(0);
-            scanner.nextLine();
-        }
-        while (Character.isAlphabetic(choice)||choice!='N');
-        expenses.put("Rent", 1000.0);
-        expenses.put("Food", 300.0);
-        expenses.put("Transport", 150.0);
+            System.out.println("Do you want to add any expenditure (Y/N)? Press 'N' to stop!");
+            choice = scanner.nextLine().trim();
+
+            if (choice.equalsIgnoreCase("Y")) {
+                System.out.println("Enter the name of the source:");
+                source = scanner.nextLine().trim();
+
+                while (true) {
+                    System.out.println("Enter the value of the expenditure:");
+
+                    if (scanner.hasNextDouble()) {
+                        value = scanner.nextDouble();
+                        scanner.nextLine(); // consume leftover newline
+                        expenses.put(source, value);
+                        break; // exit value input loop
+                    } else {
+                        System.out.println("Invalid value! Please enter a valid number.");
+                        scanner.nextLine(); // consume invalid input
+                    }
+                }
+            } else if (!choice.equalsIgnoreCase("N")) {
+                System.out.println("Invalid input! Please enter 'Y' or 'N'.");
+            }
+        } while (!choice.equalsIgnoreCase("N"));
+
+       scanner.close();
     }
+
 
     public double getTotalExpenses() {
         return expenses.values().stream().mapToDouble(Double::doubleValue).sum();

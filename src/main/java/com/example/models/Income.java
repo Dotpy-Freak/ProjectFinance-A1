@@ -6,8 +6,11 @@ import java.util.List;
 public class Income {
     private List<IncomeSource> sources = new ArrayList<>();
 
-    public void addSources() {
-        sources.add(new IncomeSource("Job", 3000, "monthly"));
+    public void addSources(String Job, Double amount, String frequency) {
+        sources.add(new IncomeSource(Job, amount, frequency));
+    }
+    public void addSources(String Job, Double amount) {
+        sources.add(new IncomeSource(Job, amount, null));
     }
 
     public double getTotalIncome() {
@@ -28,5 +31,13 @@ public class Income {
         public double getAmount() {
             return amount;
         }
+
+
     }
+    /*public static void main(String[] args) {
+
+
+        Income in = new Income();
+        System.out.println(in.getTotalIncome());
+    }*/
 }
