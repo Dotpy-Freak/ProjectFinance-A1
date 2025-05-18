@@ -25,7 +25,7 @@ public class User {
         }
 
         public void collectIncome() {
-            income.addSources();
+            //income.addSources();
         }
 
         public void collectSavings() {
@@ -33,7 +33,7 @@ public class User {
         }
 
         public void collectInvestments() {
-            investment.addInvestments();
+            investment.getProjectedReturn();
         }
 
         public void collectExpenditures() {
