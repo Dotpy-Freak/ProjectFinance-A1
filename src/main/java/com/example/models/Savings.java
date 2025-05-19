@@ -1,6 +1,6 @@
 package com.example.models;
 
-import com.example.InputScanner;
+import com.example.InputManager;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class Savings {
     private double goalAmount;
 
     public void setGoal(double totalIncome) {
-        Scanner scanner = InputScanner.getScanner();
+        Scanner scanner = InputManager.getScanner();
         String choice;
         double goalPercentage;
 
