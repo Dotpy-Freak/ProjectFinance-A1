@@ -15,7 +15,7 @@ public class Investment {
     // Calculates the projected return for all investments
     public double getProjectedReturn() {
         return investments.stream()
-                .mapToDouble(inv -> inv.getAmount() * (inv.getRate() / 100.0))
+                .mapToDouble(inv -> inv.getAmount() * (inv.getRate() / 1200.0))
                 .sum();
     }
 

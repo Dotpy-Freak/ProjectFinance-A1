@@ -1,8 +1,9 @@
 package com.example.models;
 
-import com.example.InputScanner;
+import com.example.InputManager;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,15 +11,47 @@ public class Income {
     private List<IncomeSource> sources = new ArrayList<>();
 
     public void initializeIncome(){
-        Scanner scanner1 = InputScanner.getScanner();
-        System.out.println("Enter job title:");
-        String job = scanner1.nextLine();
-        System.out.println("Enter amount:");
-        Double amount = scanner1.nextDouble();
-        scanner1.nextLine();
-        /*System.out.println("Enter frequency:");
-        String frequency = scanner1.nextLine();*/
-        addSources(job, amount);
+        Scanner scanner1 = InputManager.getScanner();
+        String job = "";
+        Double amount = 0.0;
+        boolean valid = false;
+        while (!valid) {
+            try {
+                System.out.println("Enter job title:");
+                job = scanner1.nextLine();
+                if (job.trim().isEmpty()) {
+                    System.out.println("Job title can't be empty. Please try again.");
+                    continue;
+                }
+
+                System.out.println("Enter amount:");
+                amount = scanner1.nextDouble();
+                scanner1.nextLine(); // To clear the Buffer
+                if (amount <= 0) {
+                    System.out.println("Invalid amount. Please enter a positive number.");
+                    continue;
+                }
+
+                valid = true;
+            } catch (InputMismatchException e) {
+                scanner1.nextLine(); // To clear the Buffer
+                System.out.println("Invalid input. Please enter valid data. Text for job title and number for amount.");
+            }
+
+            if (valid) {
+                addSources(job, amount);
+                valid = false; // Reset for next entry
+                System.out.println("Do you want to add more income sources? Press Y for Yes and N for No.");
+                String response = scanner1.nextLine().trim().toUpperCase();
+
+                if (response.equals("N")) {
+                    // user wants to exit
+                    break;
+                } else if (!response.equals("Y")) {
+                    System.out.println("Invalid response. Assuming you want to add more income sources.");
+                }
+            }
+        }
         //scanner1.close();
     }
 

@@ -1,6 +1,6 @@
 package com.example.models;
 
-import com.example.InputScanner;
+import com.example.InputManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class Expenditure {
     private Double totalExpenses;
 
     public void addExpenses() {
-        Scanner scanner = InputScanner.getScanner();
+        Scanner scanner = InputManager.getScanner();
         String choice;
         String source;
         Double value;

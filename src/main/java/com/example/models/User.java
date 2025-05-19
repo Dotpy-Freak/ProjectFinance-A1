@@ -1,6 +1,6 @@
 package com.example.models;
 
-import com.example.InputScanner;
+import com.example.InputManager;
 
 import java.util.Scanner;
 
@@ -37,7 +37,7 @@ public class User {
         }
 
         public void collectInvestments() {
-            Scanner scanner = InputScanner.getScanner();
+            Scanner scanner = InputManager.getScanner();
             while (true) {
                 System.out.println("Do you want to add any forms of investment? (Y/N)");
                 String choice = scanner.next();
