@@ -1,5 +1,9 @@
 package com.example.models;
 
+import com.example.InputScanner;
+
+import java.util.Scanner;
+
 public class User {
 
     // Variables to store the user's name and ID'
@@ -25,7 +29,7 @@ public class User {
         }
 
         public void collectIncome() {
-            //income.addSources();
+            income.initializeIncome();
         }
 
         public void collectSavings() {
@@ -33,11 +37,28 @@ public class User {
         }
 
         public void collectInvestments() {
+            Scanner scanner = InputScanner.getScanner();
+            while (true) {
+                System.out.println("Do you want to add any forms of investment? (Y/N)");
+                String choice = scanner.next();
+                scanner.nextLine();
+                if (choice.equalsIgnoreCase("N")) break;
+                if (choice.equalsIgnoreCase("Y")) {
+                    System.out.println("Enter the type of investment: ");
+                    String type = scanner.nextLine();
+                    System.out.println("Enter the amount of investment: ");
+                    double amount = scanner.nextDouble();
+                    System.out.println("Enter the rate of return for the investment: ");
+                    double rate = scanner.nextDouble();
+                    investment.addInvestment(type, amount, rate);
+                }
+            }
             investment.getProjectedReturn();
         }
 
         public void collectExpenditures() {
             expenditure.addExpenses();
+            expenditure.getTotalExpenses();
         }
 
         public void showSummary() {

@@ -1,14 +1,17 @@
 package com.example.models;
 
+import com.example.InputScanner;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Expenditure {
     private Map<String, Double> expenses = new HashMap<>();
+    private Double totalExpenses;
 
     public void addExpenses() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = InputScanner.getScanner();
         String choice;
         String source;
         Double value;
@@ -39,11 +42,16 @@ public class Expenditure {
             }
         } while (!choice.equalsIgnoreCase("N"));
 
-       scanner.close();
+
+    }
+
+    public void addExpenses(String expense, Double value) {
+        expenses.put(expense,value);
     }
 
 
     public double getTotalExpenses() {
-        return expenses.values().stream().mapToDouble(Double::doubleValue).sum();
+        totalExpenses = expenses.values().stream().mapToDouble(Double::doubleValue).sum();
+        return totalExpenses;
     }
 }
