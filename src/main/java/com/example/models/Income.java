@@ -19,6 +19,9 @@ public class Income {
             try {
                 System.out.println("Enter job title:");
                 job = scanner1.nextLine();
+                if (!InputManager.validateStringOnly(job)) continue;
+
+
                 if (job.trim().isEmpty()) {
                     System.out.println("Job title can't be empty. Please try again.");
                     continue;
