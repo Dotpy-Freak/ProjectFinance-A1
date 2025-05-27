@@ -13,13 +13,10 @@ repositories {
 }
 
 dependencies {
-    // Spring Boot web (REST API)
+    // Spring Boot Web for REST APIs
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-
-
-
-    // JUnit for testing
+    // Spring Boot Starter Test (includes JUnit, Mockito, etc.)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
