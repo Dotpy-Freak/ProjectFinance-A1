@@ -7,24 +7,28 @@ public class Investment {
 
     private List<InvestmentItem> investments = new ArrayList<>();
 
-    // Adds a new investment item with given details
     public void addInvestment(String type, double amount, double rate) {
         investments.add(new InvestmentItem(type, amount, rate));
     }
 
-    // Calculates the projected return for all investments
+    public boolean removeInvestment(String type) {
+        return investments.removeIf(inv -> inv.getType().equalsIgnoreCase(type));
+    }
+
+    public void clearInvestments() {
+        investments.clear();
+    }
+
     public double getProjectedReturn() {
         return investments.stream()
                 .mapToDouble(inv -> inv.getAmount() * (inv.getRate() / 1200.0))
                 .sum();
     }
 
-    // Returns a copy of the investments list (to avoid exposing internal list)
     public List<InvestmentItem> getInvestments() {
         return new ArrayList<>(investments);
     }
 
-    // Inner class representing a single investment
     public static class InvestmentItem {
         private String type;
         private double amount;
